@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/MessageField.jsx';
+import App from './components/MessageField';
 
 // const text = "Send";
 // let messages = ["message sent"];
