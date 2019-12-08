@@ -13,7 +13,7 @@ module.exports = {
    watch: process.argv[process.argv.length - 1] === 'development',
    module: {
     rules: [
-        {
+            {
             test: /\.(js|jsx)$/,
             include: path.resolve(__dirname, "static_src"),
             loader: 'babel-loader',
@@ -28,9 +28,12 @@ module.exports = {
                     }
                 ]
              ]
-
             }
-        },
+            },
+            {
+            test: /\.css$/,
+            loader: 'style-loader!css-loader',
+            },
         ],
     },
     resolve: {
