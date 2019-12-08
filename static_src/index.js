@@ -1,26 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/MessageField';
+import Layout from './components/Layout';
 
-// const text = "Send";
-// let messages = ["message sent"];
-// const Element =(props)=><button onClick={()=>messages.push('message sent')} type="button" id="button">{props.text}</button>;
-// console.log(messages);
-
-
-// const MessageComponent = (props) => <div>{props.text}</div>;
-// const MessageFields = (props) => {    
-//     const messageElement = props.messages.map(messages => <MessageComponent text={messages} />);
-//     return (
-//         <div>
-//             {Element}
-//             {messageElement}
-//         </div>
-//     )
-// };
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 ReactDOM.render(
-   <App />,
+   <MuiThemeProvider>
+      <Layout />
+   </MuiThemeProvider>,
+
    document.getElementById('root')
 );
 
