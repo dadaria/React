@@ -1,30 +1,39 @@
 {
-  "name": "lesson1",
+  "name": "geekbrains_react",
   "version": "1.0.0",
-  "description": "",
+  "description": "## Оглавление",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack --mode development",
     "build": "webpack",
     "server": "webpack-dev-server"
   },
-  "author": "dadaria",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Macket/geekbrains_react.git"
+  },
+  "author": "Ivan",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Macket/geekbrains_react/issues"
+  },
+  "homepage": "https://github.com/Macket/geekbrains_react#readme",
   "dependencies": {
-    "@babel/cli": "^7.7.4",
-    "@babel/core": "^7.7.4",
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
-    "@babel/preset-env": "^7.7.4",
-    "@babel/preset-react": "^7.7.4",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-react": "^7.7.0",
     "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.1",
+    "material-ui": "^0.20.2",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2",
+    "style-loader": "^1.0.1",
     "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0"
-  },
-  "devDependencies": {
-    "webpack-cli": "^3.3.10"
   }
 }

@@ -1,30 +1,71 @@
-import React from "react";
-import Message from './Message.jsx';
+import React from 'react';
+import PropTypes from "prop-types";
+import { TextField, FloatingActionButton } from 'material-ui';
+import SendIcon from 'material-ui/svg-icons/content/send';
+import Message from './Message';
+import '../styles/styles.css';
+
 
 export default class MessageField extends React.Component {
-   state = {
-       allMessages: [
-           {author: "Вася", message: "Привет!"},
-           {author: "Вася", message: "Как дела?"},
-        ]
-   };
+    static propTypes = {
+       chatId: PropTypes.number.isRequired,
+       messages: PropTypes.object.isRequired,
+       chats: PropTypes.object.isRequired,
+       sendMessage: PropTypes.func.isRequired,
+    };
 
-   componentDidUpdate() {
-    if (this.state.allMessages.length % 2 === 1) {  
-        setTimeout(() => this.setState({allMessages:  [...this.state.allMessages, {author: "Робот", message: "Не приставай ко мне, я робот!"}]}), 1000);
+    state = {
+        input: '',
+    };
+
+    handleChange = (event) => {
+        this.setState({ [event.target.name]: event.target.value });
+    };
+
+    handleKeyUp = (event, message) => {
+        if (event.keyCode === 13) { // Enter
+            this.handleSendMessage(message, 'me')
         }
     };
 
-   handleClick = () => {  
-        this.setState({allMessages:  [...this.state.allMessages, {author: "Вася", message: "Нормально"}]})
-   };
+    handleSendMessage = (message, sender) => {
+       if (message.length > 0 || sender === 'bot') {
+           this.props.sendMessage(message, sender);
+       }
+       if (sender === 'me') {
+           this.setState({ input: '' })
+       }
+    };
 
-   render() {
-       const messageElements = this.state.allMessages.map((messageObject, index) => (<Message key={ index } text={`${ messageObject.author }: ${ messageObject.message }`} />));      
- 
-       return <div>
-           {messageElements}
-           <button onClick={ this.handleClick }>Отправить сообщение</button>
-       </div>
-   }
+    render() {
+        const { chatId, chats, messages } = this.props;
+
+        const messageElements = chats[chatId].messageList.map(messageId => (
+            <Message
+                key={ messageId }
+                text={ messages[messageId].text }
+                sender={ messages[messageId].sender }
+            />
+        ));
+
+        return [
+            <div key='message-field' className="message-field">
+                { messageElements }
+            </div>,
+            <div key='text-field' style={ { width: '100%', display: 'flex' } }>
+                <TextField
+                    name="input"
+                    fullWidth={ true }
+                    hintText="Введите сообщение"
+                    style={ { fontSize: '22px' } }
+                    onChange={ this.handleChange }
+                    value={ this.state.input }
+                    onKeyUp={ (event) => this.handleKeyUp(event, this.state.input) }
+                />
+                <FloatingActionButton onClick={ () => this.handleSendMessage(this.state.input, 'me') }>
+                    <SendIcon />
+                </FloatingActionButton>
+            </div>
+        ]
+    }
 }
