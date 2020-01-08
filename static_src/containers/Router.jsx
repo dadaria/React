@@ -1,10 +1,14 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom'
+import {bindActionCreators} from "redux";
+import connect from "react-redux/es/connect/connect";
+import { Switch, Route } from 'react-router-dom';
 import Layout from './Layout';
-import Profile from './Profile';
+// import Profile from './Profile';
+import { showProfileInfro } from '../actions/profileActions';
 
 
-export default class Router extends React.Component {
+
+class Router extends React.Component {
    render() {
        return (
            <Switch>
@@ -22,3 +26,12 @@ export default class Router extends React.Component {
        )
    }
 }
+
+const mapStateToProps = ({ profileReducer }) => ({
+    profile: profileReducer.profile,
+ });
+ 
+ const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
+ 
+ export default connect(mapStateToProps, mapDispatchToProps)(Router);
+ 
