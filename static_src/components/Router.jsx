@@ -4,7 +4,7 @@ import connect from "react-redux/es/connect/connect";
 import { Switch, Route } from 'react-router-dom';
 import Layout from './Layout';
 // import Profile from './Profile';
-import { showProfileInfro } from '../actions/profileActions';
+import { showProfileInfo } from '../actions/profileActions';
 
 
 
