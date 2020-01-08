@@ -19,4 +19,5 @@ export default class Message extends React.Component {
            </div>
        )
    }
+       
 }
